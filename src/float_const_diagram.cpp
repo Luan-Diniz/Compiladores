@@ -20,7 +20,7 @@ std::pair<DiagramProcessing,
                 return_pair.first = IN_PROGRESS;
                 return_pair.second = token_and_lexem;
             } else {
-                 token_and_lexem = {GENERIC_TOKEN, ""};
+                token_and_lexem = {GENERIC_TOKEN, ""};
                 return_pair.first = FAILED;
                 return_pair.second = token_and_lexem;
             }
@@ -43,7 +43,9 @@ std::pair<DiagramProcessing,
                 return_pair.first = IN_PROGRESS;
                 return_pair.second = token_and_lexem;
             } else {
-                // TODO: revisar transição do diagrama.
+                token_and_lexem = {GENERIC_TOKEN, ""};
+                return_pair.first = FAILED;
+                return_pair.second = token_and_lexem;
             }
             break;
         
