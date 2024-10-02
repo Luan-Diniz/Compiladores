@@ -1,7 +1,0 @@
-def f (int a) {
-
-x = x + a;
-
-return;
-
-}

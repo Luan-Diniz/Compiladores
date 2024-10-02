@@ -4,7 +4,7 @@
 #include "constants.h"
 #include "diagram.h"
 
-class IntConstDiagram: Diagram {
+class IntConstDiagram: public Diagram {
   public:
     std::pair<DiagramProcessing, std::pair<std::string, std::string>> parse(const char entry);
   

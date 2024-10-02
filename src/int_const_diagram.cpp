@@ -12,7 +12,6 @@ std::pair<DiagramProcessing,
     switch (_current_state)
     {
         case 0:
-
             if (isdigit(entry)) {
                 _current_state = 1;
                 _current_lexem += entry;
@@ -45,13 +44,13 @@ std::pair<DiagramProcessing,
             break;
             
         default:
-            assert(false);  // Should not get here.
+            assert(false);  // Should'nt run this.
             break;
     }
 
-    // Gets ready to process a new token.
-    if (return_pair.first != IN_PROGRESS) {
-        reset();
+    _processing_state = return_pair.first;
+    if (_processing_state != IN_PROGRESS) {
+        _result = return_pair;
     }
 
     return return_pair;

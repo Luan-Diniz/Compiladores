@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 
+const std::string INPUT_FILE = "input_files/source_code_example.txt"; 
+const std::string OUTPUT_FILE = "output_files/parse.txt"; 
+
 const std::string GENERIC_TOKEN = "OUTRO";
 const std::string IDENTIFIER_TOKEN = "IDENT";
 const std::string INTEGER_TOKEN = "NI";

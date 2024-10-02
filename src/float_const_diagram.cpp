@@ -6,6 +6,11 @@
 std::pair<DiagramProcessing,
  std::pair<std::string, std::string>> FloatConstDiagram::parse(const char entry) {
 
+    // Processing has ended.
+    if (_processing_state != IN_PROGRESS) {
+        return _result;
+    }
+
     std::pair<std::string, std::string> token_and_lexem;
     std::pair<DiagramProcessing, std::pair<std::string, std::string>> return_pair;
 
@@ -66,13 +71,13 @@ std::pair<DiagramProcessing,
             break;
             
         default:
-            assert(false);  // Should not get here.
+            assert(false);  // Should'nt run this.
             break;
     }
 
-    // Gets ready to process a new token.
-    if (return_pair.first != IN_PROGRESS) {
-        reset();
+    _processing_state = return_pair.first;
+    if (_processing_state != IN_PROGRESS) {
+        _result = return_pair;
     }
 
     return return_pair;

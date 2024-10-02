@@ -33,3 +33,6 @@
 
 # VSCODE
 .vscode/*
+
+# Our output files.
+output_files/*
