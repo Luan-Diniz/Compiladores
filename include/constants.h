@@ -13,6 +13,11 @@ typedef pair<int,int> LineColumnPair;
 typedef vector<LineColumnPair> OccuranceVector;  
 typedef unordered_map<string, OccuranceVector> Table;
 
+const char* reserved_words[] = {"def", "if", "else", "while", "print", "return", 
+                                "int", "float", "string", "bool", "true", 
+                                "false", "and", "or", "not", "in"};
+const int reserved_words_size = 16;
+
 const string INPUT_FILE = "input_files/source_code_example.txt"; 
 const string OUTPUT_FILE = "output_files/parse.txt"; 
 
