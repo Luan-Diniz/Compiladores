@@ -9,8 +9,9 @@
 
 using namespace std;
 
-typedef vector<pair<int,int>> OccuranceVector;  
-typedef unordered_map<string, OccuranceVector> Table;  
+typedef pair<int,int> LineColumnPair;
+typedef vector<LineColumnPair> OccuranceVector;  
+typedef unordered_map<string, OccuranceVector> Table;
 
 const string INPUT_FILE = "input_files/source_code_example.txt"; 
 const string OUTPUT_FILE = "output_files/parse.txt"; 

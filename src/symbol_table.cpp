@@ -5,9 +5,13 @@ SymbolTable::SymbolTable() {
 }
 
 void SymbolTable::add(string symbol, int line, int column) {
-    // symbol_table.insert()
+    if (symbol_table.find(symbol) == symbol_table.end()) {
+        OccuranceVector v;
+        symbol_table.insert({symbol, v});
+    }
+    symbol_table[symbol].push_back(LineColumnPair(line, column));
 }
 
-OccuranceVector SymbolTable::get() {
-
+OccuranceVector SymbolTable::get(string symbol) {
+    return symbol_table[symbol];
 }
