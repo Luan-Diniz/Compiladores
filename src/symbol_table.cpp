@@ -18,3 +18,14 @@ OccurrenceVector SymbolTable::get(string symbol)
 {
     return symbol_table[symbol];
 }
+
+vector<pair<string, OccurrenceVector>> SymbolTable::getAllOccurrences()
+{
+    vector<pair<string, OccurrenceVector>> all_occurrences;
+
+    for (auto &entry : symbol_table)
+    {
+        all_occurrences.push_back(entry);
+    }
+    return all_occurrences;
+}

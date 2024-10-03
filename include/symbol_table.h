@@ -5,19 +5,21 @@
 
 using namespace std;
 
-class SymbolTable {
+class SymbolTable
+{
 
-    public:
-        SymbolTable();
+public:
+    SymbolTable();
 
-        // Adds a new occurance.
-        void add(string symbol, int line, int column);
+    // Adds a new occurance.
+    void add(string symbol, int line, int column);
 
-        OccurrenceVector get(string symbol);
+    OccurrenceVector get(string symbol);
 
-    private:   // Palavra reservada não estarão na tabela de símbolos.
-        Table symbol_table;  
+    vector<pair<string, OccurrenceVector>> getAllOccurrences();
+
+private: // Palavra reservada não estarão na tabela de símbolos.
+    Table symbol_table;
 };
-
 
 #endif
