@@ -13,7 +13,7 @@ class SymbolTable {
         // Adds a new occurance.
         void add(string symbol, int line, int column);
 
-        OccuranceVector get(string symbol);
+        OccurrenceVector get(string symbol);
 
     private:   // Palavra reservada não estarão na tabela de símbolos.
         Table symbol_table;  
