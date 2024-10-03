@@ -2,16 +2,24 @@
 #define CONSTANTS_H
 
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 #include <string>
+#include <utility>
 
-const std::string INPUT_FILE = "input_files/source_code_example.txt"; 
-const std::string OUTPUT_FILE = "output_files/parse.txt"; 
+using namespace std;
 
-const std::string GENERIC_TOKEN = "OUTRO";
-const std::string IDENTIFIER_TOKEN = "IDENT";
-const std::string INTEGER_TOKEN = "NI";
-const std::string FLOAT_TOKEN = "NPF";
-const std::string STRING_TOKEN = "A DEFINIR STRINGTOKEN"; // Change it soon.
+typedef vector<pair<int,int>> OccuranceVector;  
+typedef unordered_map<string, OccuranceVector> Table;  
+
+const string INPUT_FILE = "input_files/source_code_example.txt"; 
+const string OUTPUT_FILE = "output_files/parse.txt"; 
+
+const string GENERIC_TOKEN = "OUTRO";
+const string IDENTIFIER_TOKEN = "IDENT";
+const string INTEGER_TOKEN = "NI";
+const string FLOAT_TOKEN = "NPF";
+const string STRING_TOKEN = "A DEFINIR STRINGTOKEN"; // Change it soon.
 enum DiagramProcessing {  
     IN_PROGRESS,  
     FINISHED,

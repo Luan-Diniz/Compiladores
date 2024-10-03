@@ -26,6 +26,8 @@ int main()
     }
 
     // Process input file.
+    int line_number = 0;
+    int column_number = 0;
     char c;
     bool is_processing = false;
     char character_to_backtrack = '\0';
@@ -43,6 +45,12 @@ int main()
             c = ' ';
         } else {
             inputFile.get(c); 
+            
+            column_number++;
+            if (c == '\n') {
+                line_number++;
+                column_number = 0;
+            }
         }
 
         if (!is_processing and isspace(c)) {
