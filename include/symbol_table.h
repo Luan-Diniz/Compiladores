@@ -11,7 +11,7 @@ class SymbolTable {
         SymbolTable();
 
         // Adds a new occurance.
-        void add();
+        void add(string symbol, int line, int column);
 
         OccuranceVector get();
 
