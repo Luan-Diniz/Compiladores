@@ -16,7 +16,7 @@ public:
 
     OccurrenceVector get(string symbol);
 
-    vector<pair<string, OccurrenceVector>> getAllOccurrences();
+    Table getAllOccurrences();
 
 private: // Palavra reservada não estarão na tabela de símbolos.
     Table symbol_table;
