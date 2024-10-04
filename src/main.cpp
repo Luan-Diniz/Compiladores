@@ -94,8 +94,6 @@ int main()
         else
         {
             inputFile.get(c);
-            cout << "Token: " << c << " ";
-            cout << " I: " << line_number << " J: " << column_number << endl;
             column_number++;
             if (c == '\n')
             {
