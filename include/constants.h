@@ -16,9 +16,8 @@ typedef unordered_map<string, OccurrenceVector> Table;
 
 // Reserved words
 const unordered_set<std::string> reserved_words_set = {
-    "def", "if", "else", "while", "print", "return",
-    "int", "float", "string", "bool", "true",
-    "false", "and", "or", "not", "in"};
+    "def", "if", "else", "print", "read", "return",
+    "int", "float", "string", "for", "new", "null", "break"};
 const int reserved_words_size = 16;
 
 // File paths
