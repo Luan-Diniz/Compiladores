@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include <algorithm>
 
 #include "constants.h"
 #include "ident_diagram.h"
@@ -27,18 +28,20 @@ void write_to_table(SymbolTable &table)
         return;
     }
 
-    for (auto &entry : table.getAllOccurrences())
+    const Table &entries = table.getAllOccurrences();
+
+    for (auto &entry : entries)
     {
         if (is_reserved_word(entry.first))
         {
             continue;
         }
-        symbolTableFile << entry.first << " ";
+        symbolTableFile << entry.first << ": {";
         for (auto &line_column : entry.second)
         {
             symbolTableFile << "(" << line_column.first << "," << line_column.second << ") ";
         }
-        symbolTableFile << endl;
+        symbolTableFile << "}" << endl;
     }
 
     symbolTableFile.close();
@@ -64,8 +67,10 @@ int main()
     }
 
     // Initialize variables for processing the input file.
-    int line_number = 0;
+    int line_number = 1;
     int column_number = 0;
+    int to_write_line = 0;
+    int to_write_column = 0;
     char c;
     bool is_processing = false;
     char character_to_backtrack = '\0';
@@ -89,6 +94,8 @@ int main()
         else
         {
             inputFile.get(c);
+            cout << "Token: " << c << " ";
+            cout << " I: " << line_number << " J: " << column_number << endl;
             column_number++;
             if (c == '\n')
             {
@@ -113,7 +120,7 @@ int main()
             outputFile << current_token << " ";
             if (current_token == IDENTIFIER_TOKEN)
             {
-                symbol_table.add(current_lexem, line_number, column_number - current_lexem.length());
+                symbol_table.add(current_lexem, to_write_line, to_write_column - current_lexem.length());
             }
             current_lexem.clear();
             current_token.clear();
@@ -134,11 +141,21 @@ int main()
             // Handle backtracking of the character.
             if (character_to_backtrack == '\0')
             {
+                if (c == '\n')
+                {
+                    line_number--;
+                }
+                column_number--;
                 inputFile.seekg(-1, ios::cur); // Go back one character.
                 continue;
             }
             else
             {
+                column_number--;
+                if (c == '\n')
+                {
+                    line_number--;
+                }
                 inputFile.seekg(-1, ios::cur);
                 c = character_to_backtrack;
                 character_to_backtrack = '\0'; // Clear backtrack after using it.
@@ -164,6 +181,8 @@ int main()
                 // Check if the lexeme is longer than the current one, update token and lexeme.
                 if (result.second.second.length() > current_lexem.length())
                 {
+                    to_write_column = column_number;
+                    to_write_line = line_number;
                     current_token = result.second.first;
                     current_lexem = result.second.second;
                     character_to_backtrack = '\0'; // No need to backtrack.
@@ -175,6 +194,8 @@ int main()
                 // Update token and lexeme, set backtrack character if necessary.
                 if (result.second.second.length() > current_lexem.length())
                 {
+                    to_write_column = column_number;
+                    to_write_line = line_number;
                     current_token = result.second.first;
                     current_lexem = result.second.second;
                     character_to_backtrack = isspace(c) ? '\0' : c;
