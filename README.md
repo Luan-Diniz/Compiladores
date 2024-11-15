@@ -1,8 +1,15 @@
-Para rodar o programa:
+## Para rodar o programa:
 
     make && make run
 
-O arquivo com o código fonte deve estar no diretório input_files/
-O arquivo de saída estará no diretório outputs/
+## Para limpar os binários:
+
+    make clean
+
+## Arquivos:
+
+O arquivo com o código fonte deve estar no diretório **_compiler/input_files/_**
+
+O arquivo de saída estará no diretório **_compiler/outputs/_**
 
 

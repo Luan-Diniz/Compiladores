@@ -1,0 +1,101 @@
+def imprime_valores(int valor_final) {
+    if( valor_final < 1 ) {
+        print "Digite um valor maior que 0.";
+        return;
+    }
+    print "Valor Final:";
+    print valor_final;
+    int valor_atual;
+    for(valor_atual = 0; valor_atual < valor_final; valor_atual = valor_atual + 1) {
+        print "Valor Atual:"
+        print valor_atual;
+    }
+    return;
+}
+def verifica_valores(string nome, int idade, float altura) {
+    if( nome == "Douglas" ) {
+        print "Douglas encontrado!";
+    } else {
+        print "Outra pessoa.";
+    }
+    if( idade >= 18 ) {
+        print "Maior de idade.";
+    } else {
+        print "Menor de idade.";
+    }
+    if( altura >= 1.75 ) {
+        print "Pessoa alta.";
+    } else {
+        print "Pessoa baixinha.";
+    }
+    return;
+}
+def conta_valores(int numero) {
+    if (numero < 1) {
+        print "Digite um valor maior que 0.";
+        return;
+    } else {
+        if (numero == 1) {
+            print "Valor digitado: 1.";
+            return;
+        } else {
+            if (numero == 2) {
+                print "Valor digitado: 2.";
+                return;
+            } else {
+                if (numero == 3) {
+                    print "Valor digitado: 3.";
+                    return;
+                } else {
+                    if (numero == 4) {
+                        print "Valor digitado: 4.";
+                        return;
+                    } else {
+                        if (numero == 5) {
+                            print "Valor digitado: 5.";
+                            return;
+                        } else {
+                            if (numero == 6) {
+                                print "Valor digitado: 6.";
+                                return;
+                            } else {
+                                if (numero == 7) {
+                                    print "Valor digitado: 7.";
+                                    return;
+                                } else {
+                                    if (numero == 8) {
+                                        print "Valor digitado: 8.";
+                                        return;
+                                    } else {
+                                        if (numero == 9) {
+                                            print "Valor digitado: 9.";
+                                            return;
+                                        } else {
+                                            if (numero == 10) {
+                                                print "Valor digitado: 10.";
+                                                return;
+                                            } else {
+                                                if (numero == 11) {
+                                                    print "Valor digitado: 11.";
+                                                    return;
+                                                } else {
+                                                    if (numero == 12) {
+                                                        print "Valor digitado: 12.";
+                                                        return;
+                                                    } else {
+                                                        print "Digite um valor menor que 12.";
+                                                        return;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
