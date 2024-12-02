@@ -36,3 +36,11 @@
 
 # Our output files.
 c_code/output_files/*
+
+# Python
+__pycache__/
+**/__pycache__/
+venv/
+**/venv/
+
+
