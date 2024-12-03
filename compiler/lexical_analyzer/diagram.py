@@ -1,6 +1,5 @@
 from abc import abstractclassmethod, ABC
-from constants import DiagramProcessing
-
+from .constants import *
 class Diagram(ABC):
 
     def __init__(self) -> None:
@@ -32,4 +31,4 @@ class Diagram(ABC):
         self._processing_state = DiagramProcessing.IN_PROGRESS
         self._current_state = 0
         self._current_lexem = ""
-        self._result = []
+        self._result = (DiagramProcessing.IN_PROGRESS, ("", ""))

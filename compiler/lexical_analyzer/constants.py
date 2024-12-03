@@ -9,9 +9,9 @@ RESERVED_WORDS = (
 RESERVED_WORDS_SIZE = len(RESERVED_WORDS)
 
 # File paths
-INPUT_FILE = "input_files/source_code_example.txt"
-OUTPUT_FILE = "output_files/parse.txt"
-SYMBOL_TABLE_FILE = "output_files/symbol_table.txt"
+INPUT_FILE = "compiler/input_files/source_code_example.txt"
+OUTPUT_FILE = "compiler/outputs/parse.txt"
+SYMBOL_TABLE_FILE = "compiler/outputs/symbol_table.txt"
 
 # Token types
 GENERIC_TOKEN = "OUTRO"
