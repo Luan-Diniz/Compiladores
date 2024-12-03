@@ -81,7 +81,7 @@ class LexicalAnalyzer:
                 line_number += 1
                 column_number = 0
 
-            # Ignora espaços em branco
+            # Ignora espaços em branco se não está processando.
             if not is_processing and c.isspace():
                 continue
 
@@ -91,6 +91,8 @@ class LexicalAnalyzer:
                 completed_process_diagrams = 0
 
                 # Escreve o token e lexema no arquivo de saída
+                print(f"Lexema: {current_lexem}")  # debug, deleteme
+                print(f"Token: {current_token}")   # debug, deleteme
                 outputFile.write(f"{current_token} ")
                 if current_token == IDENTIFIER_TOKEN:
                     self.symbol_table.add(current_lexem, to_write_line,
@@ -107,12 +109,24 @@ class LexicalAnalyzer:
                     still_reading_file = 0
                     continue
 
+
                 # Trata o retrocesso do caractere
-                if character_to_backtrack == '\0':
-                    inputFile.seek(inputFile.tell() - 1)
-                    c = character_to_backtrack
-                    character_to_backtrack = ''
+                if character_to_backtrack == '':
+                    if (c == '\n'):
+                        line_number -= 1
+                    column_number -= 1
+                    inputFile.seek(inputFile.tell() -1)  # Volta um caracter
                     continue
+                else:
+                    column_number -= 1
+                    if c == '\n':
+                        line_number -= 1
+                    inputFile.seek(inputFile.tell() -1) 
+                    c = character_to_backtrack
+                    character_to_backtrack = ''  # Limpa apos seu uso
+
+
+
 
             # Inicia o processamento
             completed_process_diagrams = 0
@@ -123,7 +137,7 @@ class LexicalAnalyzer:
                 result = diagram.parse(c)
 
                 if result[0] == DiagramProcessing.IN_PROGRESS:
-                    continue
+                    continue    
 
                 elif result[0] == DiagramProcessing.FINISHED:
                     if len(result[1][1]) > len(current_lexem):
