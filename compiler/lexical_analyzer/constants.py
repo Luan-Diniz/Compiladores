@@ -22,7 +22,7 @@ STRING_TOKEN = "A DEFINIR STRINGTOKEN"         # TODO: Definir o resto dos token
 
 # Enum for diagram processing states
 class DiagramProcessing(Enum):
-    IN_PROGRESS = auto(),
-    FINISHED = auto(),
-    FINISHED_AND_BACKTRACK = auto(),
-    FAILED = auto(),
+    IN_PROGRESS = 0,
+    FINISHED = 1,    
+    FINISHED_AND_BACKTRACK = 2,
+    FAILED = 3,

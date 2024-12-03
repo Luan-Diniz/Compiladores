@@ -99,9 +99,8 @@ class LexicalAnalyzer:
                 current_token = ""
 
                 # Reseta os diagramas
-                map(lambda x: x.reset(), self.diagrams)
-                # for diagram in self.diagrams:
-                #     diagram.reset()
+                for diagram in self.diagrams:
+                    diagram.reset()
 
                 # Checa se EOF foi alcançado
                 if still_reading_file != 2:

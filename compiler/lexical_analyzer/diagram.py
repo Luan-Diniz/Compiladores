@@ -4,7 +4,7 @@ class Diagram(ABC):
 
     def __init__(self) -> None:
         self._processing_state: DiagramProcessing = DiagramProcessing.IN_PROGRESS
-        self._result: tuple[DiagramProcessing, tuple[str, str]] = (DiagramProcessing.IN_PROGRESS, ("", ""))
+        self._result: tuple[DiagramProcessing, tuple[str, str]] = ()
         self._current_state: int = 0
         self._current_lexem: str = ""
 
@@ -31,4 +31,4 @@ class Diagram(ABC):
         self._processing_state = DiagramProcessing.IN_PROGRESS
         self._current_state = 0
         self._current_lexem = ""
-        self._result = (DiagramProcessing.IN_PROGRESS, ("", ""))
+        self._result = ()
