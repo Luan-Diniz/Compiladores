@@ -35,4 +35,16 @@
 .vscode/*
 
 # Our output files.
-c_code/output_files/*
+**/outputs/parse.txt
+**/outputs/symbol_table.txt
+
+# Python
+__pycache__/
+**/__pycache__/
+venv/
+**/venv/
+
+#
+
+
+

@@ -1,4 +1,4 @@
-from diagram import *
+from .diagram import *
 
 
 class FloatConstDiagram(Diagram):

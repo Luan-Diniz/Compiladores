@@ -1,9 +1,15 @@
-from ident_diagram import IdentDiagram
-from int_const_diagram import IntConstDiagram
-from float_const_diagram import FloatConstDiagram
-from string_const_diagram import StringConstDiagram
+'''
+class LexicalAnalyzer():
+    def __init__(self):
+        pass
+'''
+
+from lexical_analyzer.ident_diagram import IdentDiagram
+from lexical_analyzer.int_const_diagram import IntConstDiagram
+from lexical_analyzer.float_const_diagram import FloatConstDiagram
+from lexical_analyzer.string_const_diagram import StringConstDiagram
+from lexical_analyzer.diagram import *
 from symbol_table import SymbolTable
-from diagram import *
 import os
 
 
@@ -75,7 +81,7 @@ class LexicalAnalyzer:
                 line_number += 1
                 column_number = 0
 
-            # Ignora espaços em branco
+            # Ignora espaços em branco se não está processando.
             if not is_processing and c.isspace():
                 continue
 
@@ -93,21 +99,30 @@ class LexicalAnalyzer:
                 current_token = ""
 
                 # Reseta os diagramas
-                map(lambda x: x.reset(), self.diagrams)
-                # for diagram in self.diagrams:
-                #     diagram.reset()
+                for diagram in self.diagrams:
+                    diagram.reset()
 
                 # Checa se EOF foi alcançado
                 if still_reading_file != 2:
                     still_reading_file = 0
                     continue
 
+
                 # Trata o retrocesso do caractere
-                if character_to_backtrack == '\0':
-                    inputFile.seek(inputFile.tell() - 1)
-                    c = character_to_backtrack
-                    character_to_backtrack = ''
+                if character_to_backtrack == '':
+                    if (c == '\n'):
+                        line_number -= 1
+                    column_number -= 1
+                    inputFile.seek(inputFile.tell() -1)  # Volta um caracter
                     continue
+                else:
+                    column_number -= 1
+                    if c == '\n':
+                        line_number -= 1
+                    inputFile.seek(inputFile.tell() -1) 
+                    c = character_to_backtrack
+                    character_to_backtrack = ''  # Limpa apos seu uso
+
 
             # Inicia o processamento
             completed_process_diagrams = 0
@@ -117,10 +132,10 @@ class LexicalAnalyzer:
             for diagram in self.diagrams:
                 result = diagram.parse(c)
 
-                if result[0] == IN_PROGRESS:
-                    continue
+                if result[0] == DiagramProcessing.IN_PROGRESS:
+                    continue    
 
-                elif result[0] == FINISHED:
+                elif result[0] == DiagramProcessing.FINISHED:
                     if len(result[1][1]) > len(current_lexem):
                         to_write_column = column_number
                         to_write_line = line_number
@@ -130,7 +145,7 @@ class LexicalAnalyzer:
 
                     completed_process_diagrams += 1
 
-                elif result[0] == FINISHED_AND_BACKTRACK:
+                elif result[0] == DiagramProcessing.FINISHED_AND_BACKTRACK:
                     if len(result[1][1]) > len(current_lexem):
                         to_write_column = column_number
                         to_write_line = line_number
@@ -140,7 +155,9 @@ class LexicalAnalyzer:
 
                     completed_process_diagrams += 1
 
-                elif result[0] == FAILED:
+                elif result[0] == DiagramProcessing.FAILED:
+                    if current_token == "":
+                        current_token = result[1][0]
                     completed_process_diagrams += 1
 
         # Fecha arquivos e escreve a tabela de símbolos

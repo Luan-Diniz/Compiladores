@@ -1,5 +1,4 @@
-
-
+# TODO: Esta tabela de símbolos é muito simples e incompleta.
 class SymbolTable():
     def __init__(self) -> None:
         self.__table: dict[str, dict[str,]] = {}
@@ -16,5 +15,5 @@ class SymbolTable():
     def get(self, symbol: str):
         return self.__table.get(symbol, None)
 
-    def get_all_ocurrences(self):
+    def get_all_occurrences(self):
         return self.__table
