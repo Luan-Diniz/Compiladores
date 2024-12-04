@@ -4,6 +4,7 @@ class LexicalAnalyzer():
         pass
 '''
 
+from lexical_analyzer.diagram import *
 from lexical_analyzer.ident_diagram import IdentDiagram
 from lexical_analyzer.int_const_diagram import IntConstDiagram
 from lexical_analyzer.float_const_diagram import FloatConstDiagram
@@ -12,7 +13,7 @@ from lexical_analyzer.atrib_diagram import AtribDiagram
 from lexical_analyzer.relop_diagram import RelopDiagram
 from lexical_analyzer.sep_diagram import SepDiagram
 from lexical_analyzer.braces_diagram import OpenBraces, CloseBraces
-from lexical_analyzer.diagram import *
+from lexical_analyzer.arithmetical_diagram import ArithmeticalDiagram
 from symbol_table import SymbolTable
 import os
 
@@ -29,7 +30,7 @@ class LexicalAnalyzer:
             SepDiagram(),
             OpenBraces(),
             CloseBraces(),
-
+            ArithmeticalDiagram()
         ]
         self.symbol_table = SymbolTable()
         self.number_diagrams = len(self.diagrams)
