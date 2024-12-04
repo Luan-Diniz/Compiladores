@@ -10,6 +10,8 @@ from lexical_analyzer.float_const_diagram import FloatConstDiagram
 from lexical_analyzer.string_const_diagram import StringConstDiagram
 from lexical_analyzer.atrib_diagram import AtribDiagram
 from lexical_analyzer.relop_diagram import RelopDiagram
+from lexical_analyzer.sep_diagram import SepDiagram
+from lexical_analyzer.braces_diagram import OpenBraces, CloseBraces
 from lexical_analyzer.diagram import *
 from symbol_table import SymbolTable
 import os
@@ -24,6 +26,10 @@ class LexicalAnalyzer:
             StringConstDiagram(),
             AtribDiagram(),
             RelopDiagram(),
+            SepDiagram(),
+            OpenBraces(),
+            CloseBraces(),
+
         ]
         self.symbol_table = SymbolTable()
         self.number_diagrams = len(self.diagrams)

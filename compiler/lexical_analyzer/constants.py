@@ -3,7 +3,7 @@ from enum import Enum, auto
 # Reserved words      # TODO: Verificar as palavras reservadas que faltam
 RESERVED_WORDS = (
     "def", "if", "else", "print", "read", "return", "int", "float",
-    "string", "for", "new", "null", "break"  
+    "string", "for", "new", "null", "break"
 )
 
 RESERVED_WORDS_SIZE = len(RESERVED_WORDS)
@@ -21,6 +21,9 @@ FLOAT_TOKEN = "NPF"
 STRING_TOKEN = "STRING"         # TODO: Definir o resto dos tokens
 ATRIB_TOKEN = "ATRIB"
 RELOP_TOKEN = "RELOP"
+SEP_TOKEN = "SEP"
+OPEN_BRACES_TOKEN = "OBRACE" # {
+CLOSE_BRACES_TOKEN = "CBRACE" # }
 
 # Enum for diagram processing states
 class DiagramProcessing(Enum):
