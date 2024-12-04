@@ -2,6 +2,7 @@ PYTHON := python3
 PIP := pip3
 VENV_DIR := venv
 SRC_DIR := compiler
+OUT_DIR := $(SRC_DIR)/outputs
 REQ_FILE := requirements.txt
 TARGET := main.py
 
@@ -27,3 +28,5 @@ clean:
 	rm -rf $(VENV_DIR)
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
+	find $(OUT_DIR) -type f ! -name ".gitkeep" -exec rm -f {} +
+
