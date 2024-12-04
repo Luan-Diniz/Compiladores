@@ -103,6 +103,12 @@ class LexicalAnalyzer:
 
                 # Escreve o token e lexema no arquivo de saída
                 outputFile.write(f"{current_token} ")
+
+                # Aborta, pois um erro léxico aconteceu
+                if current_token == GENERIC_TOKEN:
+                    print(f"Um erro léxico ocorreu na linha {to_write_line} e coluna {to_write_column - len(current_lexem)}")
+                    exit()
+
                 if current_token == IDENTIFIER_TOKEN:
                     self.symbol_table.add(current_lexem, to_write_line,
                                           to_write_column - len(current_lexem))

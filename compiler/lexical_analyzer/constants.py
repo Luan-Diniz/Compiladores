@@ -9,7 +9,7 @@ RESERVED_WORDS = (
 RESERVED_WORDS_SIZE = len(RESERVED_WORDS)
 
 # File paths
-INPUT_FILE = "compiler/input_files/source_code_example2.txt"
+INPUT_FILE = "compiler/input_files/source_code_example.txt"
 OUTPUT_FILE = "compiler/outputs/parse.txt"
 SYMBOL_TABLE_FILE = "compiler/outputs/symbol_table.txt"
 
