@@ -18,7 +18,9 @@ GENERIC_TOKEN = "OUTRO"
 IDENTIFIER_TOKEN = "IDENT"
 INTEGER_TOKEN = "NI"
 FLOAT_TOKEN = "NPF"
-STRING_TOKEN = "A DEFINIR STRINGTOKEN"         # TODO: Definir o resto dos tokens
+STRING_TOKEN = "STRING"         # TODO: Definir o resto dos tokens
+ATRIB_TOKEN = "ATRIB"
+RELOP_TOKEN = "RELOP"
 
 # Enum for diagram processing states
 class DiagramProcessing(Enum):
