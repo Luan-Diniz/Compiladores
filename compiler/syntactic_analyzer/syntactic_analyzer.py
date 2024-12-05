@@ -1,5 +1,7 @@
 from  constants import *
 
+'''
+
 # ToDo
 
 import os
@@ -65,10 +67,4 @@ class SyntacticAnalyzer:
         outputFile.close()
 
         return True
-
-if __name__ == '__main__':
-    sa = SyntacticAnalyzer()
-    if sa.analyze():
-        print("Nenhum erro encontrado")
-    else:
-        print("Há erro sintático")
+'''

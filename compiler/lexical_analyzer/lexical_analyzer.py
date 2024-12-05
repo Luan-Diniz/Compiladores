@@ -106,6 +106,9 @@ class LexicalAnalyzer:
                 if current_token == IDENTIFIER_TOKEN:
                     self.symbol_table.add(current_lexem, to_write_line,
                                           to_write_column - len(current_lexem))
+                    
+                yield (current_lexem, current_token)    # Returns the output
+
                 current_lexem = ""
                 current_token = ""
 
