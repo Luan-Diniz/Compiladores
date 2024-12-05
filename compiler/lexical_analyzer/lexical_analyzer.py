@@ -1,9 +1,3 @@
-'''
-class LexicalAnalyzer():
-    def __init__(self):
-        pass
-'''
-
 from lexical_analyzer.diagram import *
 from lexical_analyzer.ident_diagram import IdentDiagram
 from lexical_analyzer.int_const_diagram import IntConstDiagram
@@ -20,7 +14,7 @@ import os
 
 class LexicalAnalyzer:
     def __init__(self):
-        self.diagrams: list[Diagram ] = [
+        self.diagrams: list[Diagram] = [
             IdentDiagram(),
             IntConstDiagram(),
             FloatConstDiagram(),
