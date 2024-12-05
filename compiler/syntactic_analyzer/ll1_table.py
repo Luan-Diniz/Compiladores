@@ -1,4 +1,4 @@
-{('S', '$'): ('S', 'PROGRAM $'),
+LL1_PARSING_TABLE = {('S', '$'): ('S', 'PROGRAM $'),
  ('S', 'def'): ('S', 'PROGRAM $'),
  ('S', 'ident'): ('S', 'PROGRAM $'),
  ('S', '{'): ('S', 'PROGRAM $'),
