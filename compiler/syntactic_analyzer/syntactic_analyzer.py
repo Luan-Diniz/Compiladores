@@ -1,4 +1,6 @@
-from  lexical_analyzer.constants import *
+from  constants import *
+
+# ToDo
 
 import os
 

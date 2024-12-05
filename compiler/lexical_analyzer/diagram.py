@@ -1,5 +1,5 @@
 from abc import abstractclassmethod, ABC
-from .constants import *
+from constants import *
 class Diagram(ABC):
 
     def __init__(self) -> None:
