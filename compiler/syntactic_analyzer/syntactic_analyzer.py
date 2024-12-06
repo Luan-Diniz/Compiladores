@@ -1,70 +1,58 @@
-from  constants import *
+from constants import *
+from .ll1_table import LL1_PARSING_TABLE
+from symbol_table import SymbolTable
 
-'''
+class SyntaticAnalyzer():
+    #self._symbol_table = SymbolTable()  # A tabela de símbolos é um singleton.
 
-# ToDo
+    def analyze(self, lexem, token):
 
-import os
-
-def get_userdef_terminals() -> list:
-    try:
-        # Coleta os caracteres da tabela de símbolos até encontrar um ":"
-        with open(SYMBOL_TABLE_FILE, 'r') as symbol_table:
-            terminals = [line.split(':')[0].strip() for line in symbol_table]
-            return terminals
-    except:
-        print("Error opening files!")
-        return []
-
-
-class SyntacticAnalyzer:
-    def __init__(self):
-        pass
-
-    def analyze(self) -> bool:
-        # Abre os arquivos de entrada e saída
-        if not os.path.isfile(INPUT_FILE):
-            print("Input file does not exist!")
-            return False
-        try:
-            inputFile = open(INPUT_FILE, 'r')
-            outputFile = open(OUTPUT_FILE, 'w')
-        except IOError:
-            print("Error opening files!")
-            return False
-
-        # w = input_file
-        w = w.replace("0M", "a").replace("1M", "b").replace("0m", "c").replace("1m", "d")
-        w += "$"
-        
-        print(w)
-
-        i = 0
-        pilha = ["S", "$"]
-
+        # Poderia ser [S, "$"], porém teria que tirar a adição de "$" quando token = None
+        pilha = ["PROGRAM", "$"]   
+        w = ''
         X = pilha[0]
+
+        concluded_interation = False
         while X != "$":
+            if  w != "$":
+                # null é uma constante, mas é igual ao seu lexema, logo n precisa ser tratado
+                if (token == IDENTIFIER_TOKEN) and (lexem not in RESERVED_WORDS):  
+                    w = "ident" 
+                elif (token == INTEGER_TOKEN):
+                    w = "int_constant"
+                elif (token == FLOAT_TOKEN):
+                    w = "float_constant"    
+                elif (token == STRING_TOKEN):
+                    w = "string_constant"
+                else:
+                    w = lexem 
 
-            if X == w[i]:
-                pilha.pop(0)
-                i += 1
-            elif X in TERMINALS or LL1_PARSING_TABLE[(X, w[i])] == '':
-                return False
-                
-            else:
-                print(f"({X}, {w[i]}) -> {LL1_PARSING_TABLE[(X, w[i])][1]}"
-                    .replace("a", "0M").replace("b", "1M").replace("c", "0m")
-                    .replace("d", "1m").replace("C", "B'"))
-                pilha.pop(0)
+            try:
+                if X == w:
+                    pilha.pop(0)
+                    concluded_interation = True
+                elif X in TERMINALS or LL1_PARSING_TABLE.get((X, w)) == None:
+                    yield SyntacticProcessing.FAILED
+                    
+                else:
+                    #print(f"({X}, {w}) -> {LL1_PARSING_TABLE[(X, w)][1]}") # Debug
+                    pilha.pop(0)
 
-                for caracter in reversed(list(LL1_PARSING_TABLE[(X, w[i])][1])):
-                    pilha.insert(0, caracter)
+                    for symbol in reversed((LL1_PARSING_TABLE[(X, w)][1].split(' '))):
+                        if symbol == 'epslon': 
+                            continue
+                        pilha.insert(0, symbol)
+            except KeyError:
+                yield SyntacticProcessing.FAILED
             
             X = pilha[0]
 
-        # Fecha arquivos e escreve a tabela de símbolos
-        inputFile.close()
-        outputFile.close()
+            if not concluded_interation:    # Continua até achar o terminal na pilha
+                continue
 
-        return True
-'''
+            lexem, token = yield SyntacticProcessing.IN_PROGRESS   # Still executing
+            concluded_interation = False
+            # If it is the last iteration
+            if (token == None):       
+                w = "$"
+        yield SyntacticProcessing.SUCCESS

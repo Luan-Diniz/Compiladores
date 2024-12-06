@@ -9,6 +9,8 @@ from lexical_analyzer.sep_diagram import SepDiagram
 from lexical_analyzer.braces_diagram import OpenBraces, CloseBraces
 from lexical_analyzer.arithmetical_diagram import ArithmeticalDiagram
 from symbol_table import SymbolTable
+
+from typing import Iterator, Tuple, Optional
 import os
 
 
@@ -34,7 +36,7 @@ class LexicalAnalyzer:
         return lexem in RESERVED_WORDS
 
 
-    def write_to_table(self):
+    def write_to_table(self) -> None:
         # Escreve na tabela de símbolos
         try:
             with open(SYMBOL_TABLE_FILE, 'w') as symbol_table_file:
@@ -50,7 +52,7 @@ class LexicalAnalyzer:
         except IOError:
             print("Error opening symbol table file!")
 
-    def analyze(self):
+    def analyze(self) -> Iterator[Tuple[Optional[str], Optional[str]]]:
         # Abre os arquivos de entrada e saída
         if not os.path.isfile(INPUT_FILE):
             print("Input file does not exist!")
@@ -178,3 +180,5 @@ class LexicalAnalyzer:
         inputFile.close()
         outputFile.close()
         self.write_to_table()
+
+        yield (None, None) # Indica que a analise lexica acabou.

@@ -35,6 +35,10 @@ class DiagramProcessing(Enum):
     FINISHED_AND_BACKTRACK = 2,
     FAILED = 3,
 
+class SyntacticProcessing(Enum):
+    IN_PROGRESS = None,
+    FAILED = False,
+    SUCCESS = True,
 
 TERMINALS = (
     "def", "ident", "(", ")", "{", "}", ",", ";", "if", "else",
