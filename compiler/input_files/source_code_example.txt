@@ -1,5 +1,7 @@
+string rato;
+rato = ("ratinho");
 def f(int x) {
-    if (x < 0) {
+    if (x < null) {
         { 
             x = (-x);
         }

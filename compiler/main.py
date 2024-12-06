@@ -22,12 +22,11 @@ for lexem, token in lexical_iterator:
 
 
     print(result)
-    continue  # should be deleted
     if result == SyntacticProcessing.FAILED:
         print('Erro sintático ocorreu')
         exit()
-
-
-    # ToDo: Integrar com o analisador sintatico
+    if result == SyntacticProcessing.SUCCESS:
+        print('Análise sintática feita com sucesso.')
+        #break
 
 #print(SymbolTable().get_all_occurrences()) # Teste Singleton

@@ -1,7 +1,7 @@
 from enum import Enum
 
 # File paths
-INPUT_FILE = "compiler/input_files/source_code_example.txt"
+INPUT_FILE = "compiler/input_files/source_code_example2.txt"
 #INPUT_FILE = "compiler/input_files/gpt_example.txt"
 OUTPUT_FILE = "compiler/outputs/parse.txt"
 SYMBOL_TABLE_FILE = "compiler/outputs/symbol_table.txt"
