@@ -1,11 +1,12 @@
 from constants import *
 from .ll1_table import LL1_PARSING_TABLE
 from symbol_table import SymbolTable
+from typing import Iterator
 
 class SyntaticAnalyzer():
     #self._symbol_table = SymbolTable()  # A tabela de símbolos é um singleton.
 
-    def analyze(self, lexem, token):
+    def analyze(self, lexem, token) -> Iterator[SyntacticProcessing]:
 
         # Poderia ser [S, "$"], porém teria que tirar a adição de "$" quando token = None
         pilha = ["PROGRAM", "$"]   
