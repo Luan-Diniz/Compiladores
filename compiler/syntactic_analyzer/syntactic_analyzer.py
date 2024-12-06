@@ -7,27 +7,30 @@ class SyntaticAnalyzer():
 
     def analyze(self, lexem, token):
 
-        pilha = ["S", "$"]
+        pilha = ["PROGRAM", "$"]
         w = ''
         X = pilha[0]
+
+        concluded_interation = False
         while X != "$":
             if  w != "$":
                 if (token == IDENTIFIER_TOKEN) and (lexem not in RESERVED_WORDS):  
                     w = "ident" 
                 else:
                     w = lexem 
-            print(f'word: {w}', end = '  ')
-            #print(f"Word: {w}", end= '  \n') # deletme
-
+            #print(f'word: {w}', end = '  ')
 
             try:
                 if X == w:
                     pilha.pop(0)
+                    concluded_interation = True
                 elif X in TERMINALS or LL1_PARSING_TABLE.get((X, w)) == None:
+                    print(w)
+                    print(X)
                     yield SyntacticProcessing.FAILED
                     
                 else:
-                    #print(f"({X}, {w}) -> {LL1_PARSING_TABLE[(X, w)][1]}")
+                    print(f"({X}, {w}) -> {LL1_PARSING_TABLE[(X, w)][1]}")
                     pilha.pop(0)
 
                     for caracter in reversed((LL1_PARSING_TABLE[(X, w)][1].split(' '))):     # change name of variable caracter
@@ -40,7 +43,11 @@ class SyntaticAnalyzer():
             
             X = pilha[0]
 
+            if not concluded_interation:    # Continua até achar o terminal na pilha
+                continue
+
             lexem, token = yield SyntacticProcessing.IN_PROGRESS   # Still executing
+            concluded_interation = False
             # If it is the last iteration
             if (token == None):       
                 w = "$"

@@ -1,5 +1,8 @@
-def f (int x) {
-   if x < 0
-      x = -x;
-   return; 
- }
+def f(int x) {
+    if (x < 0) {
+        { 
+            x = (-x);
+        }
+    }
+    return;
+}
