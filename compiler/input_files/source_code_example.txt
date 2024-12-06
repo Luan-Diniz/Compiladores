@@ -1,7 +1,10 @@
 string rato;
 rato = ("ratinho");
+float number;
+number = null;
+
 def f(int x) {
-    if (x < null) {
+    if (x < 0) {
         { 
             x = (-x);
         }

@@ -16,12 +16,9 @@ if next(syntactic_iterator) == SyntacticProcessing.FAILED:
         exit()
 
 for lexem, token in lexical_iterator:
-    #print(f"Lexema: {lexem}, Token: {token}")
-
+    print(f"Lexema: {lexem}, Token: {token}")
     result = syntactic_iterator.send((lexem, token)) 
 
-
-    print(result)
     if result == SyntacticProcessing.FAILED:
         print('Erro sintático ocorreu')
         exit()

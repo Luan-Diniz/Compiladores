@@ -38,7 +38,7 @@ class SyntaticAnalyzer():
                     yield SyntacticProcessing.FAILED
                     
                 else:
-                    print(f"({X}, {w}) -> {LL1_PARSING_TABLE[(X, w)][1]}")
+                    #print(f"({X}, {w}) -> {LL1_PARSING_TABLE[(X, w)][1]}")
                     pilha.pop(0)
 
                     for caracter in reversed((LL1_PARSING_TABLE[(X, w)][1].split(' '))):     # change name of variable caracter
