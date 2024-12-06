@@ -1,9 +1,8 @@
-string rato;
-rato = ("ratinho");
-float number;
-number = null;
-
 def f(int x) {
+   string rato;
+   rato = ("ratinho");
+   float number;
+   number = (null);
     if (x < 0) {
         { 
             x = (-x);

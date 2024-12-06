@@ -1,7 +1,5 @@
 from lexical_analyzer.lexical_analyzer import LexicalAnalyzer
 from syntactic_analyzer.syntactic_analyzer import SyntaticAnalyzer
-from symbol_table import SymbolTable
-from syntactic_analyzer.ll1_table import LL1_PARSING_TABLE # for debug
 from constants import *
 
 la = LexicalAnalyzer()
@@ -11,19 +9,22 @@ lexical_iterator = la.analyze()
 lexem, token = next(lexical_iterator)
 syntactic_iterator = sa.analyze(lexem, token)
 
+# TODO: Lógica para mostrar linha e erro que erro sintático ocorreu.
 if next(syntactic_iterator) == SyntacticProcessing.FAILED:
         print('Erro sintático ocorreu')
         exit()
+sucess = False
+try:
+    for lexem, token in lexical_iterator:
+        result = syntactic_iterator.send((lexem, token)) 
 
-for lexem, token in lexical_iterator:
-    print(f"Lexema: {lexem}, Token: {token}")
-    result = syntactic_iterator.send((lexem, token)) 
-
-    if result == SyntacticProcessing.FAILED:
-        print('Erro sintático ocorreu')
-        exit()
-    if result == SyntacticProcessing.SUCCESS:
-        print('Análise sintática feita com sucesso.')
-        #break
-
-#print(SymbolTable().get_all_occurrences()) # Teste Singleton
+        if result == SyntacticProcessing.FAILED:
+            print('Erro sintático ocorreu.')
+            exit()
+        if result == SyntacticProcessing.SUCCESS:
+            sucess = True
+except StopIteration:
+    print('Erro sintático ocorreu.')
+    sucess = False
+if (sucess):
+    print('Análise sintática concluída com sucesso.')

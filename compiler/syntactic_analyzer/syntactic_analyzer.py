@@ -26,25 +26,22 @@ class SyntaticAnalyzer():
                     w = "string_constant"
                 else:
                     w = lexem 
-            #print(f'word: {w}', end = '  ')
 
             try:
                 if X == w:
                     pilha.pop(0)
                     concluded_interation = True
                 elif X in TERMINALS or LL1_PARSING_TABLE.get((X, w)) == None:
-                    print(w)
-                    print(X)
                     yield SyntacticProcessing.FAILED
                     
                 else:
-                    #print(f"({X}, {w}) -> {LL1_PARSING_TABLE[(X, w)][1]}")
+                    #print(f"({X}, {w}) -> {LL1_PARSING_TABLE[(X, w)][1]}") # Debug
                     pilha.pop(0)
 
-                    for caracter in reversed((LL1_PARSING_TABLE[(X, w)][1].split(' '))):     # change name of variable caracter
-                        if caracter == 'epslon': 
+                    for symbol in reversed((LL1_PARSING_TABLE[(X, w)][1].split(' '))):
+                        if symbol == 'epslon': 
                             continue
-                        pilha.insert(0, caracter)
+                        pilha.insert(0, symbol)
             except KeyError:
                 yield SyntacticProcessing.FAILED
             
@@ -58,5 +55,4 @@ class SyntaticAnalyzer():
             # If it is the last iteration
             if (token == None):       
                 w = "$"
-
         yield SyntacticProcessing.SUCCESS
