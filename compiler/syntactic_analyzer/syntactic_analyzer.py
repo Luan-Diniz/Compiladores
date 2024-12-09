@@ -39,7 +39,7 @@ class SyntaticAnalyzer():
                     #print(f"({X}, {w}) -> {LL1_PARSING_TABLE[(X, w)][1]}") # Debug
                     pilha.pop(0)
 
-                    for symbol in reversed((LL1_PARSING_TABLE[(X, w)][1].split(' '))):
+                    for symbol in reversed((LL1_PARSING_TABLE[(X, w)][1])):
                         if symbol == 'epslon': 
                             continue
                         pilha.insert(0, symbol)
